@@ -1,0 +1,110 @@
+<html>
+<head><title>Тест</title>
+<script type="text/jаvascript" src="data/data.js"></script>
+<style>
+p, span, input {
+ font-size:24px;
+}
+button{
+    font-size:18px;
+}
+#vo {
+    color:green;
+}
+#nvo {
+    color:red;
+}
+#ot {
+    color:blue;
+}
+</style>
+</head>
+<body style="background-color:#d9ffd6;">
+<div style="margin-left: auto;margin-right: auto;width: 600px;text-align:center;">
+<p>Тест: День рождение Учредителя всех Учредителей!!!</p>
+<div id="vopros" style="display:block;">
+<p>Идентификация.</p>
+<p>Для прохождения теста нужно удостовериться что за монитором находится Мешкова Елена Михайловна.</p>
+
+<p>Ответьте на вопрос: Сокращенно, как вас называют подчиненные на работе?</p>
+<p><span id="v_1"></span> <input type="text" id="z_1"></p>
+</div>
+<div id="vopros2" style="display:none;">
+<p>Как называется кофейня в которой вы получитили ссылку на этот ресурс?</p>
+<p><span id="v_2"></span> <input type="text" id="z_2"></p>
+</div>
+<div id="vopros3" style="display:none;">
+<p>Сложите год, месяц и число своего рождения. Вы получите число, похожее на год. Введите фамилию президента, получившего нобелевскую премию мира в этом году.</p>
+<p><span id="v_3"></span> <input type="text" id="z_3"></p>
+</div>
+<button id="kn_sl" onclick="sled_vopr();">Следующий вопрос</button>
+<button id="kn_pr" style="display:none;" onclick="proverit();">Проверить</button>
+<div id="rezultat"></div>
+<p id="ps" style='display: none'>PS: Для перехода к следующему шагу нужно выполнить тест на 100%.</p>
+<p id="f5" style="color: red; display: none;">Перезагрузите страницу или нажмите кнопку F5 для того чтобы начать тест заново.</p>
+<br><span style='display: none' id='present'>Вас ждёт подарок на 11 этаже.</span>
+</div>
+<script>
+function sled_vopr(){
+    if (document.getElementById('vopros2').style.display == "block"){
+        document.getElementById('vopros2').style.display = "none";
+        document.getElementById('vopros3').style.display = "block";
+        document.getElementById('kn_sl').style.display = "none";
+        document.getElementById('kn_pr').style.display = "block";
+    }
+    if (document.getElementById('vopros1').style.display == "block"){
+        document.getElementById('vopros1').style.display = "none";
+        document.getElementById('vopros2').style.display = "block";
+    }
+}
+function proverit(){
+otv_uch_1 = document.getElementById('z_1').value;
+otv_ucgenika_1 = otv_uch_1;
+// otv_uch_1 = kodirov(otv_uch_1);
+otv_uch_2 = document.getElementById('z_2').value;
+otv_ucgenika_2 = otv_uch_2;
+// otv_uch_2 = kodirov(otv_uch_2);
+otv_uch_3 = document.getElementById('z_3').value;
+otv_ucgenika_3 = otv_uch_3;
+// otv_uch_3 = kodirov(otv_uch_3);
+ball = 0;
+document.getElementById('vopros3').style.display = "none";
+document.getElementById('kn_pr').style.display = "none";
+document.getElementById('kn_pr').style.display = "none";
+
+if(otv_uch_1 == 'Михалыч' || otv_uch_1 == 'Михылич' || otv_uch_1 == 'михалыч' || otv_uch_1 == 'михалич'){
+    ball +=1;
+    otveti = "<span id='vo'>Вопрос 1. Вы ответили верно. Ваш ответ: "+otv_ucgenika_1+"</span>";
+} else {
+    otveti = "<span id='nvo'>Вопрос 1. Вы ответили не верно. Ваш ответ: "+otv_ucgenika_1+"</span>";
+}
+if(otv_uch_2 == 'Квартал' || otv_uch_2 == 'квартал'){
+    ball +=1;
+    otveti += "<br><span id='vo'>Вопрос 2. Вы ответили верно. Ваш ответ: "+otv_ucgenika_2+"</span>";
+} else {
+    otveti += "<br><span id='nvo'>Вопрос 2. Вы ответили не верно. Ваш ответ: "+otv_ucgenika_2+"</span>";
+}
+if(otv_uch_3 == 'Обама' || otv_uch_3 == 'обама' || otv_uch_3 == 'Obama' || otv_uch_3 == 'OBAMA' || otv_uch_3 == 'obama'){
+    ball +=1;
+    otveti += "<br><span id='vo'>Вопрос 3. Вы ответили верно. Ваш ответ: "+otv_ucgenika_3+"</span>";
+} else {
+    otveti += "<br><span id='nvo'>Вопрос 3. Вы ответили не верно. Ваш ответ: "+otv_ucgenika_3+"</span>";
+}
+vsego_zadach = 3;
+procent_vip = ball/vsego_zadach * 100;
+procent_vip = procent_vip.toFixed();
+
+if (procent_vip != 100) {
+    document.getElementById('ps').style.display = "block";
+    document.getElementById('f5').style.display = "block";
+}
+
+document.getElementById('rezultat').innerHTML = "<span id='ot'>Задания выполнены верно на "+procent_vip+"%.</span><br><br>"+otveti;
+
+if (procent_vip == 100) {
+    document.getElementById('present').style.display = "block";
+}
+}
+</script>
+</body>
+</html>
