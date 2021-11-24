@@ -6,7 +6,7 @@ const app = express()
 const port = 3000
 app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', async (req, res) => {
-  res.sendFile(`${__dirname}/public/index.html`);
+  res.sendFile(`${__dirname}/index.html`);
 })
 
 const server = app.listen(port, () => {

@@ -22,10 +22,20 @@ button{
 <body style="background-color:#d9ffd6;">
 <div style="margin-left: auto;margin-right: auto;width: 600px;text-align:center;">
 <p>Тест: День рождение Учредителя всех Учредителей!!!</p>
-<div id="vopros1" style="display:block;">
-<p>Идентификация.</p>
-<p>Для прохождения теста нужно удостовериться что за монитором находится Мешкова Елена Михайловна.</p>
 
+<div id="vopros0" style="display:block;">
+    <p>Идентификация.</p>
+    <p>Для прохождения теста нужно удостовериться, что за монитором находится Мешкова Елена Михайловна.</p>
+
+    <p style="color: red;">Пожалуйста, чихните в монитор и нажмите продолжить</p>
+</div>
+<div id="vopros9" style="display:none;">
+    <p>Чих не распознан, чихните ещё раз</p>
+</div>
+
+<button id="sled_page" onclick="sled_page();" >Продолжить</button>
+
+<div id="vopros1" style="display:none;">
 <p>Ответьте на вопрос: Сокращенно, как вас называют подчиненные на работе?</p>
 <p><span id="v_1"></span> <input type="text" id="z_1"></p>
 </div>
@@ -37,24 +47,56 @@ button{
 <p>Сложите год, месяц и число своего рождения. Вы получите число, похожее на год. Введите фамилию президента, получившего нобелевскую премию мира в этом году.</p>
 <p><span id="v_3"></span> <input type="text" id="z_3"></p>
 </div>
-<button id="kn_sl" onclick="sled_vopr();">Следующий вопрос</button>
-<button id="kn_pr" style="display:none;" onclick="proverit();">Проверить</button>
+<div id="vopros4" style="display:none;">
+<p>1кг + 0,5 Топора. Сколько весит топор?</p>
+<p><span id="v_4"></span> <input type="text" id="z_4"></p>
+</div>
+<div>
+    <button style="display:none;" id="sled_vopr" onclick="sled_vopr();">Следующий вопрос</button>
+    <button id="kn_pr" style="display:none;" onclick="proverit();">Проверить</button>
+</div>
+
+
 <div id="rezultat"></div>
 <p id="ps" style='display: none'>PS: Для перехода к следующему шагу нужно выполнить тест на 100%.</p>
 <p id="f5" style="color: red; display: none;">Перезагрузите страницу или нажмите кнопку F5 для того чтобы начать тест заново.</p>
-<br><span style='display: none' id='present'>Вас ждёт подарок на 11 этаже.</span>
+<br><span style='display: none' id='present'>Ваш подарок уже заждался, на 7 этаже.</span>
 </div>
+
 <script>
-function sled_vopr(){
+function sled_page() {
+    if (document.getElementById('vopros9').style.display == "block"){
+        document.getElementById('vopros9').style.display = "none";
+        document.getElementById('vopros1').style.display = "block"
+        document.getElementById('sled_page').style.display = "none"
+        document.getElementById('sled_vopr').style.display = "initial";
+    }
+
+    if (document.getElementById('vopros0').style.display == "block"){
+        document.getElementById('vopros0').style.display = "none";
+        document.getElementById('vopros9').style.display = "block";
+    }
+}
+function sled_vopr() {
+    if (document.getElementById('vopros3').style.display == "block"){
+        document.getElementById('vopros3').style.display = "none";
+        document.getElementById('vopros4').style.display = "block";
+        document.getElementById('kn_pr').style.display = "initial";
+        document.getElementById('sled_vopr').style.display = "none"
+    }
     if (document.getElementById('vopros2').style.display == "block"){
         document.getElementById('vopros2').style.display = "none";
         document.getElementById('vopros3').style.display = "block";
-        document.getElementById('kn_sl').style.display = "none";
-        document.getElementById('kn_pr').style.display = "block";
     }
     if (document.getElementById('vopros1').style.display == "block"){
-        document.getElementById('vopros1').style.display = "none";
         document.getElementById('vopros2').style.display = "block";
+        document.getElementById('vopros1').style.display = "none";
+        document.getElementById('sled_vopr').style.display = "initial"
+    }
+    if (document.getElementById('vopros9').style.display == "block"){
+        document.getElementById('vopros1').style.display = "block";
+        document.getElementById('vopros2').style.display = "none";
+        document.getElementById('sled_vopr').style.display = "initial"
     }
 }
 function proverit(){
@@ -67,8 +109,12 @@ otv_ucgenika_2 = otv_uch_2;
 otv_uch_3 = document.getElementById('z_3').value;
 otv_ucgenika_3 = otv_uch_3;
 // otv_uch_3 = kodirov(otv_uch_3);
+otv_uch_4 = document.getElementById('z_4').value;
+otv_ucgenika_4 = otv_uch_4;
+// otv_uch_3 = kodirov(otv_uch_3);
 ball = 0;
-document.getElementById('vopros3').style.display = "none";
+document.getElementById('vopros4').style.display = "none";
+document.getElementById('vopros4').style.display = "none";
 document.getElementById('kn_pr').style.display = "none";
 document.getElementById('kn_pr').style.display = "none";
 
@@ -90,7 +136,13 @@ if(otv_uch_3 == 'Обама' || otv_uch_3 == 'обама' || otv_uch_3 == 'Obama
 } else {
     otveti += "<br><span id='nvo'>Вопрос 3. Вы ответили не верно. Ваш ответ: "+otv_ucgenika_3+"</span>";
 }
-vsego_zadach = 3;
+if(otv_uch_4 == '2' || otv_uch_4 === '2кг' || otv_uch_4 === '2 кг' || otv_uch_4 === '2 КГ' || otv_uch_4 === '2 Кг' || otv_uch_4 === '2кг'){
+    ball +=1;
+    otveti += "<br><span id='vo'>Вопрос 4. Вы ответили верно. Ваш ответ: "+otv_ucgenika_4+"</span>";
+} else {
+    otveti += "<br><span id='nvo'>Вопрос 4. Вы ответили не верно. Ваш ответ: "+otv_ucgenika_4+"</span>";
+}
+vsego_zadach = 4;
 procent_vip = ball/vsego_zadach * 100;
 procent_vip = procent_vip.toFixed();
 
