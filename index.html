@@ -23,6 +23,12 @@ button{
 <div style="margin-left: auto;margin-right: auto;width: 600px;text-align:center;">
 <p>Тест: День рождение Учредителя всех Учредителей!!!</p>
 
+<p id="congrats">
+    Поздравляю, вы справились со вторым испытанием!!!
+    Соберитесь с силами, это третье и последнее испытание.
+    <br>
+</p>
+
 <div id="vopros0" style="display:block;">
     <p>Идентификация.</p>
     <p>Для прохождения теста нужно удостовериться, что за монитором находится Мешкова Елена Михайловна.</p>
@@ -60,7 +66,7 @@ button{
 <div id="rezultat"></div>
 <p id="ps" style='display: none'>PS: Для перехода к следующему шагу нужно выполнить тест на 100%.</p>
 <p id="f5" style="color: red; display: none;">Перезагрузите страницу или нажмите кнопку F5 для того чтобы начать тест заново.</p>
-<br><span style='display: none' id='present'>Ваш подарок уже заждался, на 7 этаже.</span>
+<br><span style='display: none' id='present'>Ваш подарок находится на 7 этаже.</span>
 </div>
 
 <script>
@@ -74,6 +80,7 @@ function sled_page() {
 
     if (document.getElementById('vopros0').style.display == "block"){
         document.getElementById('vopros0').style.display = "none";
+        document.getElementById('congrats').style.display = "none";
         document.getElementById('vopros9').style.display = "block";
     }
 }
